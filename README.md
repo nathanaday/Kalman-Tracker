@@ -1,5 +1,9 @@
 # Kalman-Tracker - Object Tracking using Kalman Filter Approach
 
+
+https://github.com/nathanaday/Kalman-Tracker/assets/79942554/97e959e2-08cf-41ea-804b-208272bf72bf
+
+
 ## Project Description
 
 This project demonstrates the benefits of applying Kalman filtering algorithms for real-time object tracking applications, where spatial awareness of the object is dependent on slower detection models prone to missing frames and producing noise.
