@@ -45,9 +45,10 @@ def main(detector: Detector, display: Display):
             predictions = detection_manager.get_predictions()
 
             # # # Optionally, if you want to see the summary of current detections in the console...
-            detection_manager.summary_dump()
+            # detection_manager.summary_dump()
 
             # Display the frame and detections
+            # display.cvshow(frame, res)
             display.cvshow(frame, predictions)
 
             # Break the loop if 'q' is pressed
@@ -61,8 +62,8 @@ def main(detector: Detector, display: Display):
 
 
 if __name__ == "__main__":
-    # model_path = "/Users/nathanaday/tensorflow_datasets/centernet_resnet101_v1_fpn_512x512_coco17_tpu-8/saved_model"
-    model_path = r"C:\Users\naday\Documents\Tensorflow\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8.tar\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\saved_model"
+    model_path = "/Users/nathanaday/tensorflow_datasets/centernet_resnet101_v1_fpn_512x512_coco17_tpu-8/saved_model"
+    # model_path = r"C:\Users\naday\Documents\Tensorflow\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8.tar\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\saved_model"
 
     det = Detector(model_path=model_path)
     disp = Display(wait=False)

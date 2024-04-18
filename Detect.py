@@ -6,6 +6,8 @@ import threading
 
 import cv2
 import tensorflow as tf
+print(tf.__version__)
+
 import time
 
 from Kalman import Kalman
@@ -65,7 +67,7 @@ class DetectionObject:
             self.y_min, self.x_min, self.y_max, self.x_max = box_dims
             self.center_x, self.center_y = center_dims
 
-            self.last_updated = time.perf_counter()
+            self.last_updated = time.time()
 
             if self.kalman.is_initialized:
                 self.kalman.update(self.center_x, self.center_y)
@@ -309,9 +311,9 @@ class Detector:
         img_tensor = tf.expand_dims(img_tensor, 0)
 
         # Run the detector
-        t1 = time.process_time()
+        t1 = time.time()
         result = self.detect_fn.signatures['serving_default'](input_tensor=img_tensor)
-        print(f"Detection inference time: {time.process_time() - t1}")
+        # print(f"Detection inference time: {time.time() - t1}")
 
         return self.parse_result(result, image_width, image_height, max_results, min_score)
 
