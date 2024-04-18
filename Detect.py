@@ -309,7 +309,9 @@ class Detector:
         img_tensor = tf.expand_dims(img_tensor, 0)
 
         # Run the detector
+        t1 = time.process_time()
         result = self.detect_fn.signatures['serving_default'](input_tensor=img_tensor)
+        print(f"Detection inference time: {time.process_time() - t1}")
 
         return self.parse_result(result, image_width, image_height, max_results, min_score)
 
