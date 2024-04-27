@@ -47,11 +47,12 @@ cd object-tracking-kalman
 ```
 
 
-2. Locally save a tensorflow detection model. This project has been tested with `CenterNet Resnet50 V1 FPN 512x512`
+2. Locally save a tensorflow detection model. This project has been tested with `CenterNet Resnet101 V1 FPN 512x512`
 
-[Download model .tar.gz from TF Hub](http://download.tensorflow.org/models/object_detection/tf2/20200711/centernet_resnet50_v1_fpn_512x512_coco17_tpu-8.tar.gz)
+[Download model .tar.gz from TF Hub](http://download.tensorflow.org/models/object_detection/tf2/20200711/centernet_resnet101_v1_fpn_512x512_coco17_tpu-8.tar.gz)
 
 Tensorflow model zoo:
+
 ```
 https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
 ```
