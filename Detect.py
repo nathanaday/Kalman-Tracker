@@ -247,8 +247,7 @@ class Detector:
         try:
             self.detect_fn = tf.saved_model.load(model_path)
         except OSError as oser:
-            print(f"Failed it load model in {self.__class__.__name__} class: {oser}")
-            return
+            raise ValueError(f"Failed to load model in {self.__class__.__name__} class. Details: {oser}")
 
         self.label_map = category_map
 

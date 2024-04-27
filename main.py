@@ -2,12 +2,22 @@ import cv2
 
 from Detect import Detector, DetectionObjectManager
 from Display import Display
+from config import model_path
 
 
 def main(detector: Detector, display: Display):
     """
     Opens an OpenCV video capture and demonstrates object detection and kalman filter usage
     """
+
+    if not isinstance(detector, Detector):
+        raise ValueError(f"Input detector class in main is not an expected `Detector` class instance. "
+                         f"It may not have initialized properly. "
+                         f"This is usually due to issues with loading the tensorflow model")
+
+    if not isinstance(display, Display):
+        raise ValueError(f"Input display class in main is not an expected `Display` class instance. "
+                         f"It may not have initialized properly.")
 
     # Initialize video capture
     cap = cv2.VideoCapture(0)  # 0 for the default camera
@@ -48,8 +58,8 @@ def main(detector: Detector, display: Display):
             # detection_manager.summary_dump()
 
             # Display the frame and detections
-            # display.cvshow(frame, res)
-            display.cvshow(frame, predictions)
+            # display.cvshow(frame, res)     # <-- To display results WITHOUT kalman filter
+            display.cvshow(frame, predictions)  # <-- To display results WITH kalman filter
 
             # Break the loop if 'q' is pressed
             if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -62,8 +72,10 @@ def main(detector: Detector, display: Display):
 
 
 if __name__ == "__main__":
-    model_path = "/Users/nathanaday/tensorflow_datasets/centernet_resnet101_v1_fpn_512x512_coco17_tpu-8/saved_model"
-    # model_path = r"C:\Users\naday\Documents\Tensorflow\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8.tar\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\centernet_resnet101_v1_fpn_512x512_coco17_tpu-8\saved_model"
+
+    # Instructions:
+    #  1. Update 'model_path' in config.py with the path to your saved tensorflow model (detail in config.py)
+    #  2. Run this file as main.py
 
     det = Detector(model_path=model_path)
     disp = Display(wait=False)
